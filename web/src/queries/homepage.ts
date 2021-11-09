@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
 
-export const exQuery = gql`
+export const homePageQuery = gql`
   query HomePage {
     homepage {
       Hero {
