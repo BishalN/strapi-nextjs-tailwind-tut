@@ -1,0 +1,11 @@
+overwrite: true
+schema: 'http://localhost:1337/graphql'
+documents:
+  - 'src/**/*.ts'
+  - '!src/gql/**/*'
+generates:
+  src/gql/:
+    preset: gql-tag-operations-preset
+    plugins:
+      - typescript
+      - typescript-operations

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_contact_contacts",
+  "info": {
+    "name": "Contact",
+    "icon": "arrow-circle-left"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "insta": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "youtube": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_about_abouts",
+  "info": {
+    "name": "About",
+    "icon": "ambulance"
+  },
+  "options": {},
+  "attributes": {
+    "work": {
+      "type": "text"
+    },
+    "blogs": {
+      "type": "text"
+    },
+    "watch": {
+      "type": "text"
+    },
+    "email": {
+      "type": "text"
+    }
+  }
+}
