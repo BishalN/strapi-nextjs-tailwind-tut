@@ -2,7 +2,17 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extends: {},
+    extend: {
+      lineClamp: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+        11: '11',
+        12: '12',
+        15: '15',
+      },
+    },
     maxHeight: {
       0: '0',
       '1/4': '25%',
@@ -13,6 +23,7 @@ module.exports = {
   },
   variants: {
     extend: {},
+    lineClamp: ['responsive', 'hover'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

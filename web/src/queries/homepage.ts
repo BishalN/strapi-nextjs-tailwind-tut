@@ -22,6 +22,8 @@ export const homePageQuery = gql`
         tools
         image {
           url
+          height
+          width
         }
         url
         bg {
@@ -36,6 +38,13 @@ export const homePageQuery = gql`
         youtube
         title
       }
+    }
+    posts(sort: "updated_at:desc", limit: 3) {
+      updated_at
+      title
+      slug
+      description
+      topics
     }
   }
 `;
