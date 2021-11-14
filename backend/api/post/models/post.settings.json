@@ -25,8 +25,8 @@
     "topics": {
       "type": "string"
     },
-    "playlist": {
-      "model": "playlist"
+    "author": {
+      "model": "writer"
     }
   }
 }

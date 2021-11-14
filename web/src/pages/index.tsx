@@ -179,6 +179,9 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
               <AiOutlineTwitter size={30} color='black' />
             </Link>
           </div>
+          <h3 className='flex items-center justify-center my-10'>
+            Images by Marek Piwnicki & Pixabay
+          </h3>
         </div>
       </section>
     </div>
