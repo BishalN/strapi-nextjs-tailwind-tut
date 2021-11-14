@@ -136,6 +136,7 @@ export type Homepage = {
   Hero?: Maybe<ComponentHeroHero>;
   Project?: Maybe<Array<Maybe<ComponentProjectProject>>>;
   created_at: Scalars['DateTime'];
+  creditText?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   published_at?: Maybe<Scalars['DateTime']>;
   updated_at: Scalars['DateTime'];
@@ -147,6 +148,7 @@ export type HomepageInput = {
   Hero?: Maybe<ComponentHeroHeroInput>;
   Project?: Maybe<Array<Maybe<ComponentProjectProjectInput>>>;
   created_by?: Maybe<Scalars['ID']>;
+  creditText?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -171,7 +173,7 @@ export type LocaleInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPlaylist | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
+export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -445,10 +447,10 @@ export type PlaylistInput = {
 
 export type Post = {
   __typename?: 'Post';
+  author?: Maybe<Writer>;
   created_at: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  playlist?: Maybe<Playlist>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -469,6 +471,12 @@ export type PostConnection = {
   values?: Maybe<Array<Maybe<Post>>>;
 };
 
+export type PostConnectionAuthor = {
+  __typename?: 'PostConnectionAuthor';
+  connection?: Maybe<PostConnection>;
+  key?: Maybe<Scalars['ID']>;
+};
+
 export type PostConnectionCreated_At = {
   __typename?: 'PostConnectionCreated_at';
   connection?: Maybe<PostConnection>;
@@ -483,12 +491,6 @@ export type PostConnectionDescription = {
 
 export type PostConnectionId = {
   __typename?: 'PostConnectionId';
-  connection?: Maybe<PostConnection>;
-  key?: Maybe<Scalars['ID']>;
-};
-
-export type PostConnectionPlaylist = {
-  __typename?: 'PostConnectionPlaylist';
   connection?: Maybe<PostConnection>;
   key?: Maybe<Scalars['ID']>;
 };
@@ -525,10 +527,10 @@ export type PostConnectionUpdated_At = {
 
 export type PostGroupBy = {
   __typename?: 'PostGroupBy';
+  author?: Maybe<Array<Maybe<PostConnectionAuthor>>>;
   created_at?: Maybe<Array<Maybe<PostConnectionCreated_At>>>;
   description?: Maybe<Array<Maybe<PostConnectionDescription>>>;
   id?: Maybe<Array<Maybe<PostConnectionId>>>;
-  playlist?: Maybe<Array<Maybe<PostConnectionPlaylist>>>;
   published_at?: Maybe<Array<Maybe<PostConnectionPublished_At>>>;
   slug?: Maybe<Array<Maybe<PostConnectionSlug>>>;
   title?: Maybe<Array<Maybe<PostConnectionTitle>>>;
@@ -537,9 +539,9 @@ export type PostGroupBy = {
 };
 
 export type PostInput = {
+  author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
-  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1412,6 +1414,7 @@ export type EditHomepageInput = {
   Hero?: Maybe<EditComponentHeroHeroInput>;
   Project?: Maybe<Array<Maybe<EditComponentProjectProjectInput>>>;
   created_by?: Maybe<Scalars['ID']>;
+  creditText?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1434,9 +1437,9 @@ export type EditPlaylistInput = {
 };
 
 export type EditPostInput = {
+  author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
-  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1540,10 +1543,10 @@ export type UpdateWriterPayload = {
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'Homepage', Hero?: { __typename?: 'ComponentHeroHero', title?: string | null | undefined, navlinks?: string | null | undefined, profile?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined, About?: { __typename?: 'ComponentAboutAbout', work?: string | null | undefined, blogs?: string | null | undefined, watch?: string | null | undefined, email?: string | null | undefined } | null | undefined, Project?: Array<{ __typename?: 'ComponentProjectProject', title?: string | null | undefined, description?: string | null | undefined, tools?: string | null | undefined, url?: string | null | undefined, image?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined, bg?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined> | null | undefined, Contact?: { __typename?: 'ComponentContactContact', email?: string | null | undefined, insta?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, youtube?: string | null | undefined, title?: string | null | undefined } | null | undefined } | null | undefined, posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined };
+export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'Homepage', creditText?: string | null | undefined, Hero?: { __typename?: 'ComponentHeroHero', title?: string | null | undefined, navlinks?: string | null | undefined, profile?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, About?: { __typename?: 'ComponentAboutAbout', work?: string | null | undefined, blogs?: string | null | undefined, watch?: string | null | undefined, email?: string | null | undefined } | null | undefined, Project?: Array<{ __typename?: 'ComponentProjectProject', title?: string | null | undefined, description?: string | null | undefined, tools?: string | null | undefined, url?: string | null | undefined, image?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined, bg?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined> | null | undefined, Contact?: { __typename?: 'ComponentContactContact', email?: string | null | undefined, insta?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, youtube?: string | null | undefined, title?: string | null | undefined } | null | undefined } | null | undefined, posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined };
 
 
-export const HomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"navlinks"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"About"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"work"}},{"kind":"Field","name":{"kind":"Name","value":"blogs"}},{"kind":"Field","name":{"kind":"Name","value":"watch"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Project"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"tools"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"bg"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"insta"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"updated_at:desc","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}}]}}]} as unknown as DocumentNode<HomePageQuery, HomePageQueryVariables>;
+export const HomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"creditText"}},{"kind":"Field","name":{"kind":"Name","value":"Hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"navlinks"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"About"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"work"}},{"kind":"Field","name":{"kind":"Name","value":"blogs"}},{"kind":"Field","name":{"kind":"Name","value":"watch"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Project"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"tools"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"bg"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"insta"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"updated_at:desc","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}}]}}]} as unknown as DocumentNode<HomePageQuery, HomePageQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1676,6 +1679,7 @@ export type Homepage = {
   Hero?: Maybe<ComponentHeroHero>;
   Project?: Maybe<Array<Maybe<ComponentProjectProject>>>;
   created_at: Scalars['DateTime'];
+  creditText?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   published_at?: Maybe<Scalars['DateTime']>;
   updated_at: Scalars['DateTime'];
@@ -1687,6 +1691,7 @@ export type HomepageInput = {
   Hero?: Maybe<ComponentHeroHeroInput>;
   Project?: Maybe<Array<Maybe<ComponentProjectProjectInput>>>;
   created_by?: Maybe<Scalars['ID']>;
+  creditText?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1711,7 +1716,7 @@ export type LocaleInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPlaylist | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
+export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -1985,10 +1990,10 @@ export type PlaylistInput = {
 
 export type Post = {
   __typename?: 'Post';
+  author?: Maybe<Writer>;
   created_at: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  playlist?: Maybe<Playlist>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -2009,6 +2014,12 @@ export type PostConnection = {
   values?: Maybe<Array<Maybe<Post>>>;
 };
 
+export type PostConnectionAuthor = {
+  __typename?: 'PostConnectionAuthor';
+  connection?: Maybe<PostConnection>;
+  key?: Maybe<Scalars['ID']>;
+};
+
 export type PostConnectionCreated_At = {
   __typename?: 'PostConnectionCreated_at';
   connection?: Maybe<PostConnection>;
@@ -2023,12 +2034,6 @@ export type PostConnectionDescription = {
 
 export type PostConnectionId = {
   __typename?: 'PostConnectionId';
-  connection?: Maybe<PostConnection>;
-  key?: Maybe<Scalars['ID']>;
-};
-
-export type PostConnectionPlaylist = {
-  __typename?: 'PostConnectionPlaylist';
   connection?: Maybe<PostConnection>;
   key?: Maybe<Scalars['ID']>;
 };
@@ -2065,10 +2070,10 @@ export type PostConnectionUpdated_At = {
 
 export type PostGroupBy = {
   __typename?: 'PostGroupBy';
+  author?: Maybe<Array<Maybe<PostConnectionAuthor>>>;
   created_at?: Maybe<Array<Maybe<PostConnectionCreated_At>>>;
   description?: Maybe<Array<Maybe<PostConnectionDescription>>>;
   id?: Maybe<Array<Maybe<PostConnectionId>>>;
-  playlist?: Maybe<Array<Maybe<PostConnectionPlaylist>>>;
   published_at?: Maybe<Array<Maybe<PostConnectionPublished_At>>>;
   slug?: Maybe<Array<Maybe<PostConnectionSlug>>>;
   title?: Maybe<Array<Maybe<PostConnectionTitle>>>;
@@ -2077,9 +2082,9 @@ export type PostGroupBy = {
 };
 
 export type PostInput = {
+  author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
-  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -2952,6 +2957,7 @@ export type EditHomepageInput = {
   Hero?: Maybe<EditComponentHeroHeroInput>;
   Project?: Maybe<Array<Maybe<EditComponentProjectProjectInput>>>;
   created_by?: Maybe<Scalars['ID']>;
+  creditText?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -2974,9 +2980,9 @@ export type EditPlaylistInput = {
 };
 
 export type EditPostInput = {
+  author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
-  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -3080,4 +3086,4 @@ export type UpdateWriterPayload = {
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'Homepage', Hero?: { __typename?: 'ComponentHeroHero', title?: string | null | undefined, navlinks?: string | null | undefined, profile?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined, About?: { __typename?: 'ComponentAboutAbout', work?: string | null | undefined, blogs?: string | null | undefined, watch?: string | null | undefined, email?: string | null | undefined } | null | undefined, Project?: Array<{ __typename?: 'ComponentProjectProject', title?: string | null | undefined, description?: string | null | undefined, tools?: string | null | undefined, url?: string | null | undefined, image?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined, bg?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined> | null | undefined, Contact?: { __typename?: 'ComponentContactContact', email?: string | null | undefined, insta?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, youtube?: string | null | undefined, title?: string | null | undefined } | null | undefined } | null | undefined, posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined };
+export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'Homepage', creditText?: string | null | undefined, Hero?: { __typename?: 'ComponentHeroHero', title?: string | null | undefined, navlinks?: string | null | undefined, profile?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, About?: { __typename?: 'ComponentAboutAbout', work?: string | null | undefined, blogs?: string | null | undefined, watch?: string | null | undefined, email?: string | null | undefined } | null | undefined, Project?: Array<{ __typename?: 'ComponentProjectProject', title?: string | null | undefined, description?: string | null | undefined, tools?: string | null | undefined, url?: string | null | undefined, image?: { __typename?: 'UploadFile', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined, bg?: { __typename?: 'UploadFile', url: string } | null | undefined } | null | undefined> | null | undefined, Contact?: { __typename?: 'ComponentContactContact', email?: string | null | undefined, insta?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, youtube?: string | null | undefined, title?: string | null | undefined } | null | undefined } | null | undefined, posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined };

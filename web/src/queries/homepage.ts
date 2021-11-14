@@ -3,11 +3,14 @@ import { gql } from 'graphql-request';
 export const homePageQuery = gql`
   query HomePage {
     homepage {
+      creditText
       Hero {
         title
         navlinks
         profile {
           url
+          height
+          width
         }
       }
       About {

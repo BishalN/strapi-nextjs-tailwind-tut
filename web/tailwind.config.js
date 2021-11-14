@@ -20,10 +20,17 @@ module.exports = {
       '3/4': '75%',
       full: '100%',
     },
+    lineHeight: {
+      'extra-loose': '2.5',
+      12: '3rem',
+    },
   },
   variants: {
     extend: {},
     lineClamp: ['responsive', 'hover'],
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };

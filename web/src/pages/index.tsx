@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { request } from 'graphql-request';
 import { homePageQuery } from '../queries/homepage';
 import { HomePageQuery, Post } from '../gql/graphql';
 import React from 'react';
-import { API_BASE_URL } from '../util/config';
 import NextImage from 'next/image';
 import { Link } from '../components/Link';
 import { Button } from '../components/Button';
@@ -27,7 +25,7 @@ export const getStaticProps = async () => {
 const Home = ({ homepage, posts }: HomePageQuery) => {
   return (
     <div>
-      <div className='container md:mx-auto'>
+      <div className='container sm:mx-auto'>
         <main>
           <div className='rounded-md mt-5 bg-hero'>
             {/* navLinks */}
@@ -42,15 +40,17 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
             {/* titleandprofile */}
             <div className='flex flex-col sm:flex-row mt-10 justify-between'>
               <h1
+                style={{ lineHeight: '1.3' }}
                 className='text-gray-800 xl:ml-32
              text-opacity-95 text-3xl md:text-5xl lg:text-6xl mx-4 max-w-lg'
               >
                 {homepage?.Hero?.title}
               </h1>
-              <img
-                src={`${API_BASE_URL}${homepage?.Hero?.profile?.url}`}
-                alt='hel'
-                className='rounded-lg max-h-3/4 max-w-md sm:max-w-xs lg:max-w-lg'
+              <NextImage
+                src={homepage?.Hero?.profile?.url!}
+                alt='myprofile'
+                height={`${homepage?.Hero?.profile?.height!}`}
+                width={homepage?.Hero?.profile?.width!}
               />
             </div>
           </div>
@@ -74,7 +74,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
             <div className='space-y-1'>
               {/* <h1 className='text-5xl'>Work.</h1> */}
               <div className='h-10'></div>
-              <p className='ml-2 max-w-md text-gray-600'>
+              <div className='ml-2 max-w-md text-gray-600'>
                 <Link
                   className='inline-block text-blue-600'
                   href={`mailto:${homepage?.Contact?.email}`}
@@ -82,7 +82,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
                   Email me
                 </Link>{' '}
                 {homepage?.About?.email}
-              </p>
+              </div>
             </div>
             <div className='space-y-1'>
               <h1 className='text-5xl'>Watch.</h1>
@@ -99,24 +99,27 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
           return (
             <div
               key={project?.title}
-              className='h-screen grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2  bg-blend-overlay bg-gray-600
+              className='relative h-screen grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2 
                 text-white justify-items-center place-items-center p-2'
-              style={{
-                backgroundImage: `url(${API_BASE_URL}${project?.bg?.url})`,
-              }}
             >
-              <div className='place-self-start p-2 md:p-10'>
-                <h3 className='text-5xl'>{project?.title}</h3>
-                <p className='text-md max-w-sm'>{project?.description}</p>
+              <NextImage
+                src={project?.bg?.url!}
+                layout='fill'
+                objectPosition='center'
+                objectFit='cover'
+                className='z-0 bg-blend-overlay bg-gray-600'
+              />
+              <div className='z-10 place-self-start p-2 md:p-10'>
+                <h3 className='text-4xl sm:text-5xl'>{project?.title}</h3>
+                <p className='text-sm sm:text-lg sm:max-w-sm'>
+                  {project?.description}
+                </p>
                 <Link href={`${project?.url}`} className='text-blue-400 '>
                   {project?.url}
                 </Link>
                 <div className='flex uppercase space-x-4'>
                   {project?.tools?.split(',').map((tool) => (
-                    <p
-                      key={tool}
-                      className='bg-gradient-to-tr from-gray-400 to-gray-800  px-1 rounded-sm'
-                    >
+                    <p key={tool} className='bg-gray-500 px-1 rounded-sm'>
                       {tool}
                     </p>
                   ))}
@@ -124,8 +127,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
               </div>
               <div className='-mt-40 md:-mt-0'>
                 <NextImage
-                  loader={() => `${API_BASE_URL}${project?.image?.url!}`}
-                  src={`${API_BASE_URL}${project?.image?.url!}`}
+                  src={`${project?.image?.url!}`}
                   height={project?.image?.height!}
                   width={project?.image?.width!}
                 />
@@ -135,6 +137,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
         })}
       </section>
       {/* recentblogs */}
+
       <section>
         <div className='p-5 bg-gradient-to-tr from-blue-300 to-indigo-500  my-10'>
           <div
@@ -180,7 +183,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
             </Link>
           </div>
           <h3 className='flex items-center justify-center my-10'>
-            Images by Marek Piwnicki & Pixabay
+            {homepage?.creditText}
           </h3>
         </div>
       </section>

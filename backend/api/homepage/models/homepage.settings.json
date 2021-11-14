@@ -31,6 +31,9 @@
       "type": "component",
       "repeatable": false,
       "component": "contact.contact"
+    },
+    "creditText": {
+      "type": "string"
     }
   }
 }

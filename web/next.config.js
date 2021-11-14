@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  images: { domains: ['localhost:4000'] },
+  images: {
+    domains: ['storage.googleapis.com'],
+  },
 };
