@@ -20,7 +20,8 @@
     },
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "posts": {
       "collection": "post"

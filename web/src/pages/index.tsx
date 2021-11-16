@@ -31,7 +31,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
             {/* navLinks */}
             <div className='flex space-x-4 justify-end p-4 mx-4'>
               {homepage?.Hero?.navlinks?.split(',').map((nav) => (
-                <Link href='#' key={nav}>
+                <Link href={nav == 'blog' ? '/playlists' : '#'} key={nav}>
                   {nav}
                 </Link>
               ))}
