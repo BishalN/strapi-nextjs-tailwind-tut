@@ -27,33 +27,35 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
     <div>
       <div className='container sm:mx-auto'>
         <main>
-          <div className='rounded-md mt-5 bg-hero'>
-            {/* navLinks */}
-            <div className='flex space-x-4 justify-end p-4 mx-4'>
-              {homepage?.Hero?.navlinks?.split(',').map((nav) => (
-                <Link href={nav == 'blog' ? '/playlists' : '#'} key={nav}>
-                  {nav}
-                </Link>
-              ))}
-            </div>
+          <section id='hero'>
+            <div className='rounded-md mt-5 bg-hero'>
+              {/* navLinks */}
+              <div className='flex space-x-4 justify-end p-4 mx-4'>
+                {homepage?.Hero?.navlinks?.split(',').map((nav) => (
+                  <Link href={nav == 'blog' ? '/playlists' : '#'} key={nav}>
+                    {nav}
+                  </Link>
+                ))}
+              </div>
 
-            {/* titleandprofile */}
-            <div className='flex flex-col sm:flex-row mt-10 justify-between'>
-              <h1
-                style={{ lineHeight: '1.3' }}
-                className='text-gray-800 xl:ml-32
+              {/* titleandprofile */}
+              <div className='flex flex-col sm:flex-row mt-10 justify-between'>
+                <h1
+                  style={{ lineHeight: '1.3' }}
+                  className='text-gray-800 xl:ml-32
              text-opacity-95 text-3xl md:text-5xl lg:text-6xl mx-4 max-w-lg'
-              >
-                {homepage?.Hero?.title}
-              </h1>
-              <NextImage
-                src={homepage?.Hero?.profile?.url!}
-                alt='myprofile'
-                height={`${homepage?.Hero?.profile?.height!}`}
-                width={homepage?.Hero?.profile?.width!}
-              />
+                >
+                  {homepage?.Hero?.title}
+                </h1>
+                <NextImage
+                  src={homepage?.Hero?.profile?.url!}
+                  alt='myprofile'
+                  height={`${homepage?.Hero?.profile?.height!}`}
+                  width={homepage?.Hero?.profile?.width!}
+                />
+              </div>
             </div>
-          </div>
+          </section>
         </main>
         {/* worksection */}
         <section id='work'>
@@ -107,7 +109,7 @@ const Home = ({ homepage, posts }: HomePageQuery) => {
                 layout='fill'
                 objectPosition='center'
                 objectFit='cover'
-                className='z-0 bg-blend-overlay bg-gray-600'
+                className='z-0'
               />
               <div className='z-10 place-self-start p-2 md:p-10'>
                 <h3 className='text-4xl sm:text-5xl'>{project?.title}</h3>

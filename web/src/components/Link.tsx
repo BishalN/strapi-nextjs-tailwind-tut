@@ -9,11 +9,11 @@ export type LinkProps = {
 export const Link: React.FC<LinkProps> = ({ href, children, className }) => {
   return (
     <NextLink href={href}>
-      <p
+      <h4
         className={` text-gray-600 cursor-pointer hover:underline ${className}`}
       >
         {children}
-      </p>
+      </h4>
     </NextLink>
   );
 };

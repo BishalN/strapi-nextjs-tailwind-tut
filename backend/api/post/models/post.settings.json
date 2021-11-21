@@ -27,6 +27,9 @@
     },
     "author": {
       "model": "writer"
+    },
+    "playlist": {
+      "model": "playlist"
     }
   }
 }

@@ -173,7 +173,7 @@ export type LocaleInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
+export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPlaylist | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -451,6 +451,7 @@ export type Post = {
   created_at: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  playlist?: Maybe<Playlist>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -495,6 +496,12 @@ export type PostConnectionId = {
   key?: Maybe<Scalars['ID']>;
 };
 
+export type PostConnectionPlaylist = {
+  __typename?: 'PostConnectionPlaylist';
+  connection?: Maybe<PostConnection>;
+  key?: Maybe<Scalars['ID']>;
+};
+
 export type PostConnectionPublished_At = {
   __typename?: 'PostConnectionPublished_at';
   connection?: Maybe<PostConnection>;
@@ -531,6 +538,7 @@ export type PostGroupBy = {
   created_at?: Maybe<Array<Maybe<PostConnectionCreated_At>>>;
   description?: Maybe<Array<Maybe<PostConnectionDescription>>>;
   id?: Maybe<Array<Maybe<PostConnectionId>>>;
+  playlist?: Maybe<Array<Maybe<PostConnectionPlaylist>>>;
   published_at?: Maybe<Array<Maybe<PostConnectionPublished_At>>>;
   slug?: Maybe<Array<Maybe<PostConnectionSlug>>>;
   title?: Maybe<Array<Maybe<PostConnectionTitle>>>;
@@ -542,6 +550,7 @@ export type PostInput = {
   author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
+  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1440,6 +1449,7 @@ export type EditPostInput = {
   author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
+  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -1540,6 +1550,18 @@ export type UpdateWriterPayload = {
   writer?: Maybe<Writer>;
 };
 
+export type BlogPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlogPathsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', slug?: string | null | undefined } | null | undefined> | null | undefined };
+
+export type BlogQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type BlogQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, updated_at: any, topics?: string | null | undefined, author?: { __typename?: 'Writer', name?: string | null | undefined, bio?: string | null | undefined, avatar?: { __typename?: 'UploadFile', formats?: any | null | undefined } | null | undefined } | null | undefined, playlist?: { __typename?: 'Playlist', posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined> | null | undefined };
+
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1563,6 +1585,8 @@ export type PlaylistsQueryVariables = Exact<{ [key: string]: never; }>;
 export type PlaylistsQuery = { __typename?: 'Query', playlists?: Array<{ __typename?: 'Playlist', title?: string | null | undefined, description?: string | null | undefined, id: string, slug: string, posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined };
 
 
+export const BlogPathsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPaths"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<BlogPathsQuery, BlogPathsQueryVariables>;
+export const BlogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Blog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"formats"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"playlist"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}}]}}]}}]}}]} as unknown as DocumentNode<BlogQuery, BlogQueryVariables>;
 export const HomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"creditText"}},{"kind":"Field","name":{"kind":"Name","value":"Hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"navlinks"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"About"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"work"}},{"kind":"Field","name":{"kind":"Name","value":"blogs"}},{"kind":"Field","name":{"kind":"Name","value":"watch"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Project"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"tools"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"bg"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"Contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"insta"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"updated_at:desc","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}}]}}]} as unknown as DocumentNode<HomePageQuery, HomePageQueryVariables>;
 export const PlaylistPathsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PlaylistPaths"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"playlists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<PlaylistPathsQuery, PlaylistPathsQueryVariables>;
 export const PlaylistDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Playlist"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"playlists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"updated_at:desc","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}}]}}]}}]} as unknown as DocumentNode<PlaylistQuery, PlaylistQueryVariables>;
@@ -1736,7 +1760,7 @@ export type LocaleInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
+export type Morph = ComponentAboutAbout | ComponentContactContact | ComponentHeroHero | ComponentProjectProject | Homepage | I18NLocale | Playlist | PlaylistAggregator | PlaylistConnection | PlaylistConnectionCreated_At | PlaylistConnectionDescription | PlaylistConnectionId | PlaylistConnectionPublished_At | PlaylistConnectionSlug | PlaylistConnectionTitle | PlaylistConnectionUpdated_At | PlaylistGroupBy | Post | PostAggregator | PostConnection | PostConnectionAuthor | PostConnectionCreated_At | PostConnectionDescription | PostConnectionId | PostConnectionPlaylist | PostConnectionPublished_At | PostConnectionSlug | PostConnectionTitle | PostConnectionTopics | PostConnectionUpdated_At | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | Writer | WriterAggregator | WriterConnection | WriterConnectionAvatar | WriterConnectionBio | WriterConnectionCreated_At | WriterConnectionId | WriterConnectionName | WriterConnectionPublished_At | WriterConnectionUpdated_At | WriterGroupBy | CreatePlaylistPayload | CreatePostPayload | CreateRolePayload | CreateUserPayload | CreateWriterPayload | DeleteFilePayload | DeleteHomepagePayload | DeletePlaylistPayload | DeletePostPayload | DeleteRolePayload | DeleteUserPayload | DeleteWriterPayload | UpdateHomepagePayload | UpdatePlaylistPayload | UpdatePostPayload | UpdateRolePayload | UpdateUserPayload | UpdateWriterPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -2014,6 +2038,7 @@ export type Post = {
   created_at: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  playlist?: Maybe<Playlist>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -2058,6 +2083,12 @@ export type PostConnectionId = {
   key?: Maybe<Scalars['ID']>;
 };
 
+export type PostConnectionPlaylist = {
+  __typename?: 'PostConnectionPlaylist';
+  connection?: Maybe<PostConnection>;
+  key?: Maybe<Scalars['ID']>;
+};
+
 export type PostConnectionPublished_At = {
   __typename?: 'PostConnectionPublished_at';
   connection?: Maybe<PostConnection>;
@@ -2094,6 +2125,7 @@ export type PostGroupBy = {
   created_at?: Maybe<Array<Maybe<PostConnectionCreated_At>>>;
   description?: Maybe<Array<Maybe<PostConnectionDescription>>>;
   id?: Maybe<Array<Maybe<PostConnectionId>>>;
+  playlist?: Maybe<Array<Maybe<PostConnectionPlaylist>>>;
   published_at?: Maybe<Array<Maybe<PostConnectionPublished_At>>>;
   slug?: Maybe<Array<Maybe<PostConnectionSlug>>>;
   title?: Maybe<Array<Maybe<PostConnectionTitle>>>;
@@ -2105,6 +2137,7 @@ export type PostInput = {
   author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
+  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -3003,6 +3036,7 @@ export type EditPostInput = {
   author?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
+  playlist?: Maybe<Scalars['ID']>;
   published_at?: Maybe<Scalars['DateTime']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
@@ -3102,6 +3136,18 @@ export type UpdateWriterPayload = {
   __typename?: 'updateWriterPayload';
   writer?: Maybe<Writer>;
 };
+
+export type BlogPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlogPathsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', slug?: string | null | undefined } | null | undefined> | null | undefined };
+
+export type BlogQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type BlogQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, updated_at: any, topics?: string | null | undefined, author?: { __typename?: 'Writer', name?: string | null | undefined, bio?: string | null | undefined, avatar?: { __typename?: 'UploadFile', formats?: any | null | undefined } | null | undefined } | null | undefined, playlist?: { __typename?: 'Playlist', posts?: Array<{ __typename?: 'Post', updated_at: any, title?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, topics?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined> | null | undefined };
 
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
